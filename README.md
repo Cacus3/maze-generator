@@ -7,7 +7,7 @@ A web application built with kids (and parents!) in mind. It allows you to gener
 ## Key Features
 
 - **Infinite Layouts:** Every click generates a structurally perfect maze with exactly one valid path to the finish line, using the *Recursive Backtracker* algorithm.
-- **Adjustable Dimensions:** Change the width and height seamlessly – from simple grids (e.g., 10x10) for a quick warmup, to massive, dense puzzles (up to 40x40).
+- **Adjustable Dimensions:** Change the width and height seamlessly – from simple grids (e.g., 10x10) for a quick warmup, to massive, dense puzzles (up to 50x50).
 - **Print-Ready Mode:** Designed specifically for home printers (A4 format). When you press `Ctrl+P` (Print), the entire UI (sidebar, backgrounds, buttons) automatically hides, saving you a lot of ink and leaving only a clean maze on the page.
 - **8 Unique Thematic Styles:**
   - **Classic:** Minimalist black-and-white layout – perfectly readable and super printer-friendly.
