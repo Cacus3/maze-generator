@@ -93,7 +93,6 @@ export const MazeBoard: React.FC<MazeBoardProps> = ({ maze, theme }) => {
 
     return (
         <div className="maze-container">
-            <div className="print-title print-only">Labirynt ({maze[0]?.length || 0}x{maze?.length || 0})</div>
             <canvas ref={canvasRef} className="maze-canvas" />
         </div>
     );
