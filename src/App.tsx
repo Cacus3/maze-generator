@@ -11,12 +11,13 @@ function App() {
   const [height, setHeight] = useState(15);
   const [theme, setTheme] = useState<ThemeId>('voxel');
   const [maze, setMaze] = useState<Maze | null>(null);
+  const [showSolution, setShowSolution] = useState(false);
 
   const handleGenerate = useCallback(() => {
     setMaze(generateMaze(width, height));
+    setShowSolution(false);
   }, [width, height]);
 
-  // Initial generation
   useEffect(() => {
     handleGenerate();
   }, [handleGenerate]);
@@ -38,16 +39,18 @@ function App() {
             width={width}
             height={height}
             theme={theme}
+            showSolution={showSolution}
             onWidthChange={setWidth}
             onHeightChange={setHeight}
             onThemeChange={setTheme}
+            onSolutionToggle={setShowSolution}
             onGenerate={handleGenerate}
             onPrint={handlePrint}
           />
         </aside>
 
         <section className="maze-section">
-          {maze && <MazeBoard maze={maze} theme={theme} />}
+          {maze && <MazeBoard maze={maze} theme={theme} showSolution={showSolution} />}
         </section>
       </main>
     </div>

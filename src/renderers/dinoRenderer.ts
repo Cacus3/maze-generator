@@ -76,5 +76,11 @@ export const dinoRenderer: ThemeRenderer = {
         ctx.rotate(Math.PI / 4);
         ctx.fillRect(-s * 0.15, -s * 0.4, s * 0.3, s * 0.8);
         ctx.restore();
+    },
+    drawSolution: (ctx, px, py, cellSize) => {
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.4)';
+        ctx.beginPath();
+        ctx.arc(px + cellSize / 2, py + cellSize / 2, cellSize * 0.15, 0, Math.PI * 2);
+        ctx.fill();
     }
 };

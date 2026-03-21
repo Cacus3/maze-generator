@@ -131,5 +131,11 @@ export const voxelRenderer: ThemeRenderer = {
         ctx.strokeStyle = '#000000';
         ctx.lineWidth = Math.max(1, s * 0.03);
         ctx.strokeRect(lx, ly, lockS, lockS);
+    },
+    drawSolution: (ctx, px, py, cellSize) => {
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.4)';
+        ctx.beginPath();
+        ctx.arc(px + cellSize / 2, py + cellSize / 2, cellSize * 0.15, 0, Math.PI * 2);
+        ctx.fill();
     }
 };

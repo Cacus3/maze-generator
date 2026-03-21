@@ -62,7 +62,7 @@ export const castleRenderer: ThemeRenderer = {
         px += (cellSize - s) / 2;
         py += (cellSize - s) / 2;
 
-        ctx.fillStyle = '#fbbf24'; // Gold
+        ctx.fillStyle = '#fbbf24';
         ctx.beginPath();
         ctx.moveTo(px + s * 0.1, py + s * 0.8);
         ctx.lineTo(px + s * 0.9, py + s * 0.8);
@@ -74,10 +74,16 @@ export const castleRenderer: ThemeRenderer = {
         ctx.fill();
 
         // Jewels
-        ctx.fillStyle = '#dc2626'; // Ruby
+        ctx.fillStyle = '#dc2626';
         ctx.beginPath(); ctx.arc(px + s * 0.5, py + s * 0.4, s * 0.08, 0, Math.PI * 2); ctx.fill();
-        ctx.fillStyle = '#3b82f6'; // Sapphire
+        ctx.fillStyle = '#3b82f6';
         ctx.beginPath(); ctx.arc(px + s * 0.2, py + s * 0.5, s * 0.08, 0, Math.PI * 2); ctx.fill();
         ctx.beginPath(); ctx.arc(px + s * 0.8, py + s * 0.5, s * 0.08, 0, Math.PI * 2); ctx.fill();
+    },
+    drawSolution: (ctx, px, py, cellSize) => {
+        ctx.fillStyle = 'rgba(251, 191, 36, 0.5)';
+        ctx.beginPath();
+        ctx.arc(px + cellSize / 2, py + cellSize / 2, cellSize * 0.15, 0, Math.PI * 2);
+        ctx.fill();
     }
 };

@@ -95,5 +95,11 @@ export const cityRenderer: ThemeRenderer = {
                 ctx.fillRect(px + s * 0.1 + c * qW, py + r * qH, qW, qH);
             }
         }
+    },
+    drawSolution: (ctx, px, py, cellSize) => {
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.5)';
+        ctx.beginPath();
+        ctx.arc(px + cellSize / 2, py + cellSize / 2, cellSize * 0.15, 0, Math.PI * 2);
+        ctx.fill();
     }
 };

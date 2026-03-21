@@ -76,5 +76,11 @@ export const spaceRenderer: ThemeRenderer = {
         ctx.fillStyle = '#ffffff'; // White sparkles
         ctx.fillRect(cx - cellSize * 0.3, cy, cellSize * 0.05, cellSize * 0.05);
         ctx.fillRect(cx + cellSize * 0.25, cy - cellSize * 0.2, cellSize * 0.05, cellSize * 0.05);
+    },
+    drawSolution: (ctx, px, py, cellSize) => {
+        ctx.fillStyle = 'rgba(168, 85, 247, 0.5)'; // Purple/Neon solution dot
+        ctx.beginPath();
+        ctx.arc(px + cellSize / 2, py + cellSize / 2, cellSize * 0.15, 0, Math.PI * 2);
+        ctx.fill();
     }
 };

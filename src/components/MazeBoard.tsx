@@ -1,14 +1,16 @@
 import React, { useEffect, useRef } from 'react';
 import type { Maze } from '../utils/mazeGenerator';
+import { solveMaze } from '../utils/mazeGenerator';
 import type { ThemeId } from '../styles/themes';
 import { renderers } from '../renderers';
 
 interface MazeBoardProps {
     maze: Maze;
     theme: ThemeId;
+    showSolution: boolean;
 }
 
-export const MazeBoard: React.FC<MazeBoardProps> = ({ maze, theme }) => {
+export const MazeBoard: React.FC<MazeBoardProps> = ({ maze, theme, showSolution }) => {
     const canvasRef = useRef<HTMLCanvasElement>(null);
 
     useEffect(() => {
@@ -21,13 +23,11 @@ export const MazeBoard: React.FC<MazeBoardProps> = ({ maze, theme }) => {
         const height = maze.length;
         const width = maze[0].length;
 
-        // We convert the line-based maze into a block-based tilemap
         const gridCols = width * 2 + 1;
         const gridRows = height * 2 + 1;
 
-        // High-res logical dimensions for good print quality
         const MAX_CANVAS_WIDTH = 2000;
-        const MAX_CANVAS_HEIGHT = 2800; // Roughly A4 proportions
+        const MAX_CANVAS_HEIGHT = 2800;
 
         const cellSizeX = Math.floor(MAX_CANVAS_WIDTH / gridCols);
         const cellSizeY = Math.floor(MAX_CANVAS_HEIGHT / gridRows);
@@ -36,7 +36,6 @@ export const MazeBoard: React.FC<MazeBoardProps> = ({ maze, theme }) => {
         canvas.width = gridCols * cellSize;
         canvas.height = gridRows * cellSize;
 
-        // Convert maze to a tile map: true = wall, false = path
         const tileMap = Array(gridRows).fill(null).map(() => Array(gridCols).fill(true));
 
         for (let y = 0; y < height; y++) {
@@ -45,9 +44,7 @@ export const MazeBoard: React.FC<MazeBoardProps> = ({ maze, theme }) => {
                 const cx = x * 2 + 1;
                 const cy = y * 2 + 1;
 
-                tileMap[cy][cx] = false; // center is always path
-
-                // carve paths if there are no walls
+                tileMap[cy][cx] = false;
                 if (!cell.walls.top) tileMap[cy - 1][cx] = false;
                 if (!cell.walls.bottom) tileMap[cy + 1][cx] = false;
                 if (!cell.walls.left) tileMap[cy][cx - 1] = false;
@@ -55,25 +52,20 @@ export const MazeBoard: React.FC<MazeBoardProps> = ({ maze, theme }) => {
             }
         }
 
-        // Open entrance and exit in tile map
         tileMap[1][0] = false;
         tileMap[gridRows - 2][gridCols - 1] = false;
 
-        // Retrieve active renderer
         const renderer = renderers[theme];
 
-        // Background clearing
         ctx.fillStyle = renderer.backgroundColor;
         ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-        // Draw the main maze blocks
         for (let ry = 0; ry < gridRows; ry++) {
             for (let rx = 0; rx < gridCols; rx++) {
                 const isWall = tileMap[ry][rx];
                 const px = rx * cellSize;
                 const py = ry * cellSize;
 
-                // Seeded random for consistent detail generation
                 const hash = Math.sin(rx * 12.9898 + ry * 78.233) * 43758.5453;
                 const rand = hash - Math.floor(hash);
 
@@ -85,11 +77,35 @@ export const MazeBoard: React.FC<MazeBoardProps> = ({ maze, theme }) => {
             }
         }
 
-        // Draw entrance and exit markers
         renderer.drawEntrance(ctx, 0 * cellSize, 1 * cellSize, cellSize);
         renderer.drawExit(ctx, (gridCols - 1) * cellSize, (gridRows - 2) * cellSize, cellSize);
 
-    }, [maze, theme]);
+        if (showSolution) {
+            const path = solveMaze(maze);
+            if (path.length > 0) {
+                renderer.drawSolution(ctx, 0 * cellSize, 1 * cellSize, cellSize);
+
+                for (let i = 0; i < path.length; i++) {
+                    const cell = path[i];
+                    const cx = cell.x * 2 + 1;
+                    const cy = cell.y * 2 + 1;
+
+                    renderer.drawSolution(ctx, cx * cellSize, cy * cellSize, cellSize);
+
+                    if (i < path.length - 1) {
+                        const next = path[i + 1];
+                        const midX = (cx + (next.x * 2 + 1)) / 2;
+                        const midY = (cy + (next.y * 2 + 1)) / 2;
+                        renderer.drawSolution(ctx, midX * cellSize, midY * cellSize, cellSize);
+                    } else {
+                        // Last cell to Exit
+                        renderer.drawSolution(ctx, (gridCols - 1) * cellSize, (gridRows - 2) * cellSize, cellSize);
+                    }
+                }
+            }
+        }
+
+    }, [maze, theme, showSolution]);
 
     return (
         <div className="maze-container">

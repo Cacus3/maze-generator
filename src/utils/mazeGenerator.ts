@@ -89,3 +89,42 @@ export const generateMaze = (width: number, height: number): Maze => {
 
     return grid;
 };
+
+export const solveMaze = (maze: Maze): Cell[] => {
+    if (maze.length === 0 || maze[0].length === 0) return [];
+
+    const height = maze.length;
+    const width = maze[0].length;
+    const startCell = maze[0][0];
+    const endCell = maze[height - 1][width - 1];
+
+    const stack: { cell: Cell; path: Cell[] }[] = [{ cell: startCell, path: [startCell] }];
+    const visited = new Set<string>();
+    visited.add(`${startCell.x},${startCell.y}`);
+
+    while (stack.length > 0) {
+        const { cell, path } = stack.pop()!;
+
+        if (cell.x === endCell.x && cell.y === endCell.y) {
+            return path;
+        }
+
+        const { x, y } = cell;
+        const neighbors: { cell: Cell; wall: keyof Walls }[] = [];
+
+        if (!cell.walls.top && y > 0) neighbors.push({ cell: maze[y - 1][x], wall: 'top' });
+        if (!cell.walls.right && x < width - 1) neighbors.push({ cell: maze[y][x + 1], wall: 'right' });
+        if (!cell.walls.bottom && y < height - 1) neighbors.push({ cell: maze[y + 1][x], wall: 'bottom' });
+        if (!cell.walls.left && x > 0) neighbors.push({ cell: maze[y][x - 1], wall: 'left' });
+
+        for (const neighbor of neighbors) {
+            const key = `${neighbor.cell.x},${neighbor.cell.y}`;
+            if (!visited.has(key)) {
+                visited.add(key);
+                stack.push({ cell: neighbor.cell, path: [...path, neighbor.cell] });
+            }
+        }
+    }
+
+    return [];
+};

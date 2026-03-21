@@ -89,5 +89,11 @@ export const oceanRenderer: ThemeRenderer = {
         ctx.fillRect(px + s * 0.35, py + s * 0.35, s * 0.3, s * 0.3);
         ctx.fillStyle = '#0f172a'; // keyhole
         ctx.fillRect(px + s * 0.45, py + s * 0.45, s * 0.1, s * 0.1);
+    },
+    drawSolution: (ctx, px, py, cellSize) => {
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.3)';
+        ctx.beginPath();
+        ctx.arc(px + cellSize / 2, py + cellSize / 2, cellSize * 0.15, 0, Math.PI * 2);
+        ctx.fill();
     }
 };

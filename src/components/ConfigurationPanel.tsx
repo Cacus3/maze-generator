@@ -6,15 +6,17 @@ interface ConfigurationPanelProps {
     width: number;
     height: number;
     theme: ThemeId;
+    showSolution: boolean;
     onWidthChange: (w: number) => void;
     onHeightChange: (h: number) => void;
     onThemeChange: (t: ThemeId) => void;
+    onSolutionToggle: (s: boolean) => void;
     onGenerate: () => void;
     onPrint: () => void;
 }
 
 export const ConfigurationPanel: React.FC<ConfigurationPanelProps> = ({
-    width, height, theme, onWidthChange, onHeightChange, onThemeChange, onGenerate, onPrint
+    width, height, theme, showSolution, onWidthChange, onHeightChange, onThemeChange, onSolutionToggle, onGenerate, onPrint
 }) => {
     return (
         <div className="config-panel no-print">
@@ -34,6 +36,16 @@ export const ConfigurationPanel: React.FC<ConfigurationPanelProps> = ({
                         <option key={t.id} value={t.id}>{t.name}</option>
                     ))}
                 </select>
+            </div>
+            <div className="form-group checkbox-group">
+                <label>
+                    <input 
+                        type="checkbox" 
+                        checked={showSolution} 
+                        onChange={e => onSolutionToggle(e.target.checked)} 
+                    />
+                    Show solution
+                </label>
             </div>
             <div className="button-group">
                 <button onClick={onGenerate} className="btn-primary">Generate New</button>

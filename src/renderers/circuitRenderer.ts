@@ -99,5 +99,11 @@ export const circuitRenderer: ThemeRenderer = {
         ctx.beginPath();
         ctx.arc(cx, cy + cellSize * 0.35, cellSize * 0.1, 0, Math.PI, false);
         ctx.fill();
+    },
+    drawSolution: (ctx, px, py, cellSize) => {
+        ctx.fillStyle = 'rgba(234, 179, 8, 0.5)'; // Gold solution dot
+        ctx.beginPath();
+        ctx.arc(px + cellSize / 2, py + cellSize / 2, cellSize * 0.15, 0, Math.PI * 2);
+        ctx.fill();
     }
 };
