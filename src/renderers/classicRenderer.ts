@@ -11,11 +11,11 @@ export const classicRenderer: ThemeRenderer = {
         ctx.fillRect(px, py, cellSize, cellSize);
     },
     drawEntrance: (ctx, px, py, cellSize) => {
-        ctx.fillStyle = '#10B981'; // Green
+        ctx.fillStyle = '#10B981';
         ctx.fillRect(px, py, cellSize, cellSize);
     },
     drawExit: (ctx, px, py, cellSize) => {
-        ctx.fillStyle = '#EF4444'; // Red
+        ctx.fillStyle = '#EF4444';
         ctx.fillRect(px, py, cellSize, cellSize);
     },
     drawSolution: (ctx, px, py, cellSize) => {

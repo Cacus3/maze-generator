@@ -67,7 +67,6 @@ export const voxelRenderer: ThemeRenderer = {
         }
     },
     drawEntrance: (ctx, px, py, cellSize) => {
-        // draw Steve
         px = px + cellSize * 0.1;
         py = py + cellSize * 0.1;
         const s = cellSize * 0.8;
@@ -97,7 +96,6 @@ export const voxelRenderer: ThemeRenderer = {
         ctx.fillRect(px + p * 2, py + p * 6, p * 4, p);
     },
     drawExit: (ctx, px, py, cellSize) => {
-        // draw Chest
         px = px + cellSize * 0.1;
         py = py + cellSize * 0.1;
         const s = cellSize * 0.8;

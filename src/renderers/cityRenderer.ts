@@ -1,13 +1,13 @@
 import type { ThemeRenderer } from './types';
 
 export const cityRenderer: ThemeRenderer = {
-    backgroundColor: '#1e293b', // Asphalt
+    backgroundColor: '#1e293b',
     drawWall: (ctx, px, py, cellSize, rand) => {
         // Building roof (Top down view)
         ctx.fillStyle = '#475569'; // Roof gray
         ctx.fillRect(px, py, cellSize, cellSize);
 
-        ctx.fillStyle = '#334155'; // Inner border (shadow)
+        ctx.fillStyle = '#334155';
         ctx.fillRect(px + cellSize * 0.1, py + cellSize * 0.1, cellSize * 0.8, cellSize * 0.8);
 
         // Roof details
@@ -15,7 +15,7 @@ export const cityRenderer: ThemeRenderer = {
             // AC unit
             ctx.fillStyle = '#94a3b8';
             ctx.fillRect(px + cellSize * 0.2, py + cellSize * 0.2, cellSize * 0.3, cellSize * 0.3);
-            ctx.fillStyle = '#0f172a'; // Fan grill
+            ctx.fillStyle = '#0f172a';
             ctx.beginPath(); ctx.arc(px + cellSize * 0.35, py + cellSize * 0.35, cellSize * 0.1, 0, Math.PI * 2); ctx.fill();
         } else if (rand > 0.95) { // Reduced frequency for Helipad (H)
             // Helipad / H
@@ -63,15 +63,15 @@ export const cityRenderer: ThemeRenderer = {
 
         // Windows
         ctx.fillStyle = '#38bdf8';
-        ctx.fillRect(px + s * 0.35, py + s * 0.3, s * 0.3, s * 0.15); // Windshield
-        ctx.fillRect(px + s * 0.35, py + s * 0.55, s * 0.3, s * 0.1); // Rear window
+        ctx.fillRect(px + s * 0.35, py + s * 0.3, s * 0.3, s * 0.15);
+        ctx.fillRect(px + s * 0.35, py + s * 0.55, s * 0.3, s * 0.1);
 
         // Tires
         ctx.fillStyle = '#0f172a';
-        ctx.fillRect(px + s * 0.2, py + s * 0.2, s * 0.1, s * 0.2); // Front left
-        ctx.fillRect(px + s * 0.7, py + s * 0.2, s * 0.1, s * 0.2); // Front right
-        ctx.fillRect(px + s * 0.2, py + s * 0.6, s * 0.1, s * 0.2); // Rear left
-        ctx.fillRect(px + s * 0.7, py + s * 0.6, s * 0.1, s * 0.2); // Rear right
+        ctx.fillRect(px + s * 0.2, py + s * 0.2, s * 0.1, s * 0.2);
+        ctx.fillRect(px + s * 0.7, py + s * 0.2, s * 0.1, s * 0.2);
+        ctx.fillRect(px + s * 0.2, py + s * 0.6, s * 0.1, s * 0.2);
+        ctx.fillRect(px + s * 0.7, py + s * 0.6, s * 0.1, s * 0.2);
     },
     drawExit: (ctx, px, py, cellSize) => {
         // Checkered Flag

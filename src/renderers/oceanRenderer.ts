@@ -1,7 +1,7 @@
 import type { ThemeRenderer } from './types';
 
 export const oceanRenderer: ThemeRenderer = {
-    backgroundColor: '#0284c7', // Deep water background
+    backgroundColor: '#0284c7',
     drawWall: (ctx, px, py, cellSize, rand) => {
         // Clear, bright water
         ctx.fillStyle = '#0ea5e9';
@@ -11,17 +11,17 @@ export const oceanRenderer: ThemeRenderer = {
         ctx.fillStyle = '#0284c7';
         ctx.fillRect(px, py + cellSize * 0.4, cellSize, cellSize * 0.2);
 
-        ctx.fillStyle = '#38bdf8'; // Highlight wave
+        ctx.fillStyle = '#38bdf8';
         ctx.fillRect(px, py + cellSize * 0.2, cellSize, cellSize * 0.1);
 
         // Simple, non-messy elements
         if (rand < 0.1) {
             // Little fish (Simple Orange block fish)
             ctx.fillStyle = '#f97316';
-            ctx.fillRect(px + cellSize * 0.3, py + cellSize * 0.4, cellSize * 0.4, cellSize * 0.2); // body
-            ctx.fillRect(px + cellSize * 0.7, py + cellSize * 0.3, cellSize * 0.1, cellSize * 0.4); // tail
+            ctx.fillRect(px + cellSize * 0.3, py + cellSize * 0.4, cellSize * 0.4, cellSize * 0.2);
+            ctx.fillRect(px + cellSize * 0.7, py + cellSize * 0.3, cellSize * 0.1, cellSize * 0.4);
 
-            ctx.fillStyle = '#ffffff'; // eye
+            ctx.fillStyle = '#ffffff';
             ctx.fillRect(px + cellSize * 0.4, py + cellSize * 0.45, cellSize * 0.05, cellSize * 0.05);
 
         } else if (rand > 0.1 && rand < 0.25) {
@@ -29,7 +29,7 @@ export const oceanRenderer: ThemeRenderer = {
             ctx.fillStyle = '#16a34a';
             ctx.fillRect(px + cellSize * 0.3, py + cellSize * 0.2, cellSize * 0.15, cellSize * 0.8);
             ctx.fillRect(px + cellSize * 0.6, py + cellSize * 0.4, cellSize * 0.15, cellSize * 0.6);
-            ctx.fillStyle = '#22c55e'; // Highlight
+            ctx.fillStyle = '#22c55e';
             ctx.fillRect(px + cellSize * 0.3, py + cellSize * 0.2, cellSize * 0.05, cellSize * 0.8);
             ctx.fillRect(px + cellSize * 0.6, py + cellSize * 0.4, cellSize * 0.05, cellSize * 0.6);
 
@@ -51,11 +51,11 @@ export const oceanRenderer: ThemeRenderer = {
         px += (cellSize - s) / 2;
         py += (cellSize - s) / 2;
 
-        ctx.fillStyle = '#475569'; // Dark slate gray
+        ctx.fillStyle = '#475569';
 
         // Ring
         ctx.beginPath(); ctx.arc(px + s * 0.5, py + s * 0.2, s * 0.15, 0, Math.PI * 2); ctx.fill();
-        ctx.fillStyle = '#fde047'; // background color to hollow it
+        ctx.fillStyle = '#fde047';
         ctx.beginPath(); ctx.arc(px + s * 0.5, py + s * 0.2, s * 0.05, 0, Math.PI * 2); ctx.fill();
 
         // Shank (vertical)
@@ -75,19 +75,19 @@ export const oceanRenderer: ThemeRenderer = {
         px += (cellSize - s) / 2;
         py += (cellSize - s) / 2;
 
-        ctx.fillStyle = '#b45309'; // Wood
+        ctx.fillStyle = '#b45309';
         ctx.fillRect(px + s * 0.1, py + s * 0.2, s * 0.8, s * 0.6);
 
-        ctx.fillStyle = '#f59e0b'; // Gold trim
+        ctx.fillStyle = '#f59e0b';
         ctx.fillRect(px + s * 0.1, py + s * 0.2, s * 0.8, s * 0.1);
         ctx.fillRect(px + s * 0.1, py + s * 0.7, s * 0.8, s * 0.1);
         ctx.fillRect(px + s * 0.1, py + s * 0.2, s * 0.1, s * 0.6);
         ctx.fillRect(px + s * 0.8, py + s * 0.2, s * 0.1, s * 0.6);
 
         // Lock
-        ctx.fillStyle = '#e2e8f0'; // Silver lock
+        ctx.fillStyle = '#e2e8f0';
         ctx.fillRect(px + s * 0.35, py + s * 0.35, s * 0.3, s * 0.3);
-        ctx.fillStyle = '#0f172a'; // keyhole
+        ctx.fillStyle = '#0f172a';
         ctx.fillRect(px + s * 0.45, py + s * 0.45, s * 0.1, s * 0.1);
     },
     drawSolution: (ctx, px, py, cellSize) => {

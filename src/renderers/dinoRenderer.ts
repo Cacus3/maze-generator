@@ -1,10 +1,10 @@
 import type { ThemeRenderer } from './types';
 
 export const dinoRenderer: ThemeRenderer = {
-    backgroundColor: '#78350f', // Dirt background
+    backgroundColor: '#78350f',
     drawWall: (ctx, px, py, cellSize, rand) => {
         // Jungle leaves
-        ctx.fillStyle = '#14532d'; // Dark green base
+        ctx.fillStyle = '#14532d';
         ctx.fillRect(px, py, cellSize, cellSize);
 
         ctx.fillStyle = '#166534'; // Lighter leaves
@@ -21,9 +21,9 @@ export const dinoRenderer: ThemeRenderer = {
 
         // Dino eggs hidden in leaves
         if (rand < 0.05) {
-            ctx.fillStyle = '#e2e8f0'; // Egg white
+            ctx.fillStyle = '#e2e8f0';
             ctx.beginPath(); ctx.ellipse(px + cellSize * 0.5, py + cellSize * 0.5, cellSize * 0.15, cellSize * 0.2, 0, 0, Math.PI * 2); ctx.fill();
-            ctx.fillStyle = '#16a34a'; // Green spots
+            ctx.fillStyle = '#16a34a';
             ctx.fillRect(px + cellSize * 0.45, py + cellSize * 0.45, cellSize * 0.05, cellSize * 0.05);
             ctx.fillRect(px + cellSize * 0.5, py + cellSize * 0.55, cellSize * 0.05, cellSize * 0.05);
         }
@@ -39,7 +39,7 @@ export const dinoRenderer: ThemeRenderer = {
         px += (cellSize - s) / 2;
         py += (cellSize - s) / 2;
 
-        ctx.fillStyle = '#16a34a'; // Green dino
+        ctx.fillStyle = '#16a34a';
         ctx.fillRect(px, py + s * 0.2, s * 0.6, s * 0.6); // Neck/head back
         ctx.fillRect(px + s * 0.4, py + s * 0.2, s * 0.6, s * 0.3); // Snout
         ctx.fillRect(px + s * 0.4, py + s * 0.6, s * 0.4, s * 0.2); // Lower jaw
@@ -64,7 +64,7 @@ export const dinoRenderer: ThemeRenderer = {
         px += (cellSize - s) / 2;
         py += (cellSize - s) / 2;
 
-        ctx.fillStyle = '#f8fafc'; // White bone
+        ctx.fillStyle = '#f8fafc';
         ctx.beginPath(); ctx.arc(px + s * 0.2, py + s * 0.2, s * 0.15, 0, Math.PI * 2); ctx.fill();
         ctx.beginPath(); ctx.arc(px + s * 0.2, py + s * 0.8, s * 0.15, 0, Math.PI * 2); ctx.fill();
         ctx.beginPath(); ctx.arc(px + s * 0.8, py + s * 0.2, s * 0.15, 0, Math.PI * 2); ctx.fill();

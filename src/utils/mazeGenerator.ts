@@ -18,10 +18,10 @@ const getUnvisitedNeighbors = (cell: Cell, grid: Maze, width: number, height: nu
     const neighbors: Cell[] = [];
     const { x, y } = cell;
 
-    if (y > 0 && !grid[y - 1][x].visited) neighbors.push(grid[y - 1][x]); // Top
-    if (x < width - 1 && !grid[y][x + 1].visited) neighbors.push(grid[y][x + 1]); // Right
-    if (y < height - 1 && !grid[y + 1][x].visited) neighbors.push(grid[y + 1][x]); // Bottom
-    if (x > 0 && !grid[y][x - 1].visited) neighbors.push(grid[y][x - 1]); // Left
+    if (y > 0 && !grid[y - 1][x].visited) neighbors.push(grid[y - 1][x]);
+    if (x < width - 1 && !grid[y][x + 1].visited) neighbors.push(grid[y][x + 1]);
+    if (y < height - 1 && !grid[y + 1][x].visited) neighbors.push(grid[y + 1][x]);
+    if (x > 0 && !grid[y][x - 1].visited) neighbors.push(grid[y][x - 1]);
 
     return neighbors;
 };
@@ -84,8 +84,8 @@ export const generateMaze = (width: number, height: number): Maze => {
     }
 
     // Open start and end points
-    grid[0][0].walls.left = false; // Entrance at top-left
-    grid[height - 1][width - 1].walls.right = false; // Exit at bottom-right
+    grid[0][0].walls.left = false;
+    grid[height - 1][width - 1].walls.right = false;
 
     return grid;
 };
